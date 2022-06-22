@@ -56,8 +56,7 @@ class Koan06 extends GroovyTestCase {
         def differentTypes = [1, 'String', "GString", 'a', 'Another string', 0]
         def uniqueTypes = []
         // ------------ START EDITING HERE ----------------------
-
-
+        uniqueTypes = differentTypes.collect{ it.class }.unique()
         // ------------ STOP EDITING HERE  ----------------------
         assert uniqueTypes == [Integer, String]
     }

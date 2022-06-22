@@ -41,8 +41,9 @@ class Koan05 extends GroovyTestCase {
         // http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Map.html#each(groovy.lang.Closure)
         def idListResult = []
         // ------------ START EDITING HERE ----------------------
-
-
+        idToNameMap.each { key, value ->
+            idListResult << "$key$value"
+        }
         // ------------ STOP EDITING HERE  ----------------------
         assert idListResult == ['333Matthew', '233Christopher', '133Dominic']
     }

@@ -69,8 +69,10 @@ class Koan06 extends GroovyTestCase {
         // under the src directory
         int count = 0
         // ------------ START EDITING HERE ----------------------
-
-
+        new File('src').eachFileRecurse { File file ->
+            if (!file.isDirectory() && file.text.contains('Lorem'))
+                count++
+        }
         // ------------ STOP EDITING HERE  ----------------------
         assert count == 3
 

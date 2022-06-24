@@ -31,8 +31,11 @@ class Koan09 extends GroovyTestCase {
         // add a sayHello() method that returns "Hello from ${firstName}"
         def expando = new Expando()
         // ------------ START EDITING HERE ----------------------
+        expando.firstName = 'Rhodin'
 
-
+        expando.sayHello = { ->
+            "Hello from ${firstName}"
+        }
         // ------------ STOP EDITING HERE  ----------------------
 
         assert expando?.firstName != null, 'firstName property was not found'

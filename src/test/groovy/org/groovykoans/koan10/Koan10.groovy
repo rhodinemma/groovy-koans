@@ -163,8 +163,7 @@ class Koan10 extends GroovyTestCase {
         // http://ant.apache.org/manual/Tasks/copy.html
         def baseDir = 'src/test/groovy/org/groovykoans/koan10'
         // ------------ START EDITING HERE ----------------------
-
-
+        new AntBuilder().copy(file: "${baseDir}/movies.xml", tofile: "${baseDir}/movies_copy.xml")
         // ------------ STOP EDITING HERE  ----------------------
         assert new File("${baseDir}/movies_copy.xml").exists()
     }

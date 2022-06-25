@@ -176,10 +176,11 @@ class Koan10 extends GroovyTestCase {
         def baseDir = 'src/test/groovy/org/groovykoans/koan10'
         def actualChecksum
         // ------------ START EDITING HERE ----------------------
-
-
+        def antBuilder = new AntBuilder()
+        antBuilder.checksum(file: "${baseDir}/movies.xml", property: 'moviesChecksum')
+        actualChecksum = antBuilder.project.properties.moviesChecksum
         // ------------ STOP EDITING HERE  ----------------------
-        assert actualChecksum == '9160b6a6555e31ebc01f30c1db7e1277'
+        assert actualChecksum == 'f3c2860cdcdde18241216f4c25d8ff89'
     }
 
 }

@@ -163,8 +163,13 @@ class Koan09 extends GroovyTestCase {
         //   - otherwise, return the number itself (as a String)
 
         // ------------ START EDITING HERE ----------------------
-
-
+        Integer.metaClass.fizzBuzz = {
+            String result = ''
+            if (delegate % 3 == 0) result += 'Fizz'
+            if (delegate % 5 == 0) result += 'Buzz'
+            if (!result) result = delegate.toString()
+            result
+        }
         // ------------ STOP EDITING HERE  ----------------------
         def fizzBuzzes = (1..15).collect { it.fizzBuzz() }
         def expectedFizzBuzzes = ['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz',

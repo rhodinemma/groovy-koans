@@ -98,8 +98,14 @@ class Koan10 extends GroovyTestCase {
         // Using MarkupBuilder, create the above html as String
         def html
         // ------------ START EDITING HERE ----------------------
-
-
+        def writer = new StringWriter()
+        def b = new MarkupBuilder(writer)
+        b.html {
+            body {
+                h1('title')
+            }
+        }
+        html = writer.toString()
         // ------------ STOP EDITING HERE  ----------------------
         assert formatXml(html) == formatXml("<html><body><h1>title</h1></body></html>")
     }

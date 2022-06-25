@@ -121,8 +121,15 @@ class Koan10 extends GroovyTestCase {
 
         String convertedXml
         // ------------ START EDITING HERE ----------------------
-
-
+        def reader = new XmlSlurper().parse('src/test/groovy/org/groovykoans/koan10/movies.xml')
+        def writer = new StringWriter()
+        def builder = new MarkupBuilder(writer)
+        builder.movies {
+            reader.movie.each { movieNode ->
+                movie(id: movieNode.@id.text(), title: movieNode.title.text(), year: movieNode.year.text())
+            }
+        }
+        convertedXml = writer.toString()
         // ------------ STOP EDITING HERE  ----------------------
         def expected = """|<movies>
                             |  <movie id='6' title='Total Recall' year='1990' />

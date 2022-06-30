@@ -27,7 +27,6 @@ class Koan11 extends GroovyTestCase {
                                   |)'''.stripMargin()
 
     void test01_CreateDb() {
-
         // Groovy makes it very easy to access databases.
         // You can find some info here: http://groovy-lang.org/databases.html
         // Suppose we wanted to create an in-memory H2 database in Java and execute some commands:
@@ -54,8 +53,7 @@ class Koan11 extends GroovyTestCase {
         Sql.withInstance('jdbc:h2:mem:groovyDb2', 'sa', '', 'org.h2.Driver') { db ->
             db.execute(CREATE_STMT)
             // ------------ START EDITING HERE ----------------------
-
-
+            db.execute('insert into PERSON (FIRSTNAME, LASTNAME) values (?, ?)', ['Jack', 'Dawson'])
             // ------------ STOP EDITING HERE  ----------------------
             assert db.firstRow('select count(*) c from Person').c == 1
             assert db.firstRow('select LASTNAME from Person where FIRSTNAME = ?', ['Jack']).lastname == 'Dawson'

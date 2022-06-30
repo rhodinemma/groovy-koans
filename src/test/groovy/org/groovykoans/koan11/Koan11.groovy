@@ -128,8 +128,9 @@ class Koan11 extends GroovyTestCase {
 
             // Use eachRow() to change all the first names that contain the letter 'a' (lowercase) into 'Alf'.
             // ------------ START EDITING HERE ----------------------
-
-
+             db.eachRow("select * from PERSON p where p.firstname like '%a%'") { row ->
+                row.firstname = 'Alf'
+             }
             // ------------ STOP EDITING HERE  ----------------------
             assert db.firstRow("select count(*) c from PERSON where FIRSTNAME = 'Alf'").c == 2
         }

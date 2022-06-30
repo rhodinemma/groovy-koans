@@ -102,8 +102,8 @@ class Koan11 extends GroovyTestCase {
             // Using what you've learned in the link from test01, run an SQL query to find Rose's last name:
             def lastNameRose
             // ------------ START EDITING HERE ----------------------
-
-
+            def rose = db.firstRow('select LASTNAME from Person where FIRSTNAME = :firstName', [firstName:'Rose'])
+            lastNameRose = rose.lastname
             // ------------ STOP EDITING HERE  ----------------------
             assert lastNameRose == 'DeWitt'
 
@@ -111,8 +111,9 @@ class Koan11 extends GroovyTestCase {
             // last names of the people in Person
             def eCount = 0
             // ------------ START EDITING HERE ----------------------
-
-
+            db.eachRow('select LASTNAME from PERSON') { row ->
+                eCount += row.lastname.count('e')
+            }
             // ------------ STOP EDITING HERE  ----------------------
             assert eCount == 2
         }

@@ -67,8 +67,8 @@ class Koan13 extends Specification {
         where:
         // Hint - this can be done in two lines
         // ------------ START EDITING HERE ----------------------
-
-
+        a << (0..10).collect { [it].multiply(11) }.flatten()
+        b << (0..10).multiply(11)
         // ------------ STOP EDITING HERE  ----------------------
         c = a * b
     }

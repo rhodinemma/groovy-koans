@@ -67,15 +67,17 @@ class Koan11 extends GroovyTestCase {
 
             // Add all the people from cast.txt into the table we just created.
             // ------------ START EDITING HERE ----------------------
-
-
+            new File('src/test/groovy/org/groovykoans/koan11/cast.txt').eachLine { line ->
+                db.execute('insert into PERSON (FIRSTNAME, LASTNAME) values (?, ?)', line.split())
+            }
             // ------------ STOP EDITING HERE  ----------------------
             assert db.firstRow('select count(*) c from Person').c == 23
 
             // Now do the same with an xml source from cast2.xml (add the actor names):
             // ------------ START EDITING HERE ----------------------
-
-
+            def xml = new XmlSlurper().parse('src/test/groovy/org/groovykoans/koan11/cast2.xml')
+            xml.character.@actor.each { attr ->
+                db.execute('insert into PERSON (FIRSTNAME, LASTNAME) values (?, ?)', attr.text().split())}
             // ------------ STOP EDITING HERE  ----------------------
             assert db.firstRow('select count(*) c from Person').c == 39
 
@@ -83,8 +85,7 @@ class Koan11 extends GroovyTestCase {
             // db.dataSet('PERSON') method. See http://docs.groovy-lang.org/latest/html/api/groovy/sql/DataSet.html
             def person = db.dataSet('PERSON')
             // ------------ START EDITING HERE ----------------------
-
-
+            person.add(firstname: 'William', lastname: 'Shatner')
             // ------------ STOP EDITING HERE  ----------------------
             assert db.firstRow('select count(*) c from Person').c == 40
         }

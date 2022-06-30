@@ -27,13 +27,11 @@ class Koan12 extends GroovyTestCase {
         // Use shouldFail() to make this unit test pass. Try to be specific about the exception type.
 
         // ------------ START EDITING HERE ----------------------
-
-
+        shouldFail(MissingMethodException) {
             // ------------ STOP EDITING HERE  ----------------------
             Integer.nonExistentMethod()
             // ------------ START EDITING HERE ----------------------
-
-
+        }
         // ------------ STOP EDITING HERE  ----------------------
 
     }
